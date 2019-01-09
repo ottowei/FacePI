@@ -527,19 +527,23 @@ class Face:
                 return []
         except MyException.RateLimitExceededError as e:
             time.sleep(10)
+            print('超過 raise 1')
             return self.identify(faceidkeys, personGroupId)
         except MyException.PersonGroupNotFoundError as e:
             personGroupAPI = PersonGroup(self.api_key, self.host)
             personGroupAPI.createPersonGroup(personGroupId,
                                             config['personGroupName'],
                                             'group userdata')
+            print('超過 raise 2')
             return self.identify(faceidkeys, personGroupId)
         except MyException.UnspecifiedError as e:
+            print('超過 raise 3')
             return []
         except MyException.PersonGroupNotTrainedError as e:
             print('丟出 MyException.PersonGroupNotTrainedError 例外')
+            print('超過 raise 4')
             raise
-        print('超過 raise')
+        print('超過 raise 5')
         # if ClassUtils.isFaceAPIError(identifyfaces):
         #     return []
         return identifiedfaces

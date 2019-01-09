@@ -327,9 +327,9 @@ class FacePI:
     def Signin(self):
         ''' 簽到！ '''
         while True:
-            jpgimagepath = Camera.takePicture(personGroupId, 2000)
+            jpgimagepath = Camera.takePicture(personGroupId, 3000)
+            #jpgimagepath = Camera.takePicture(personGroupId, 2000) # Delay 3 seconds for take pictures from PiCam - ottowei 20190107
             self.Identify(jpgimagepath)
-
 
 if __name__ == '__main__':
     fire.Fire(FacePI)

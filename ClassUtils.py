@@ -136,6 +136,7 @@ def SigninIdentifyfaces(identifyfaces, picture=None):
         ClassCV.cv_Identifyfaces(identifyfaces, picture)
 
 
+
 def isLinux():
     return 'Linux' == platform.system()
 
