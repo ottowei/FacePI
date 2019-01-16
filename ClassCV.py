@@ -14,6 +14,19 @@ def show_opencv(typee, mirror=False):
     print('WIDTH', cam.get(3), 'HEIGHT', cam.get(4))  # 顯示預設的解析度
     while True:
         ret_val, img = cam.read()
+
+        # Add for face detection, ottowei , 2019011701
+        gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+        # Load the Haar cascade file
+        face_cascade = cv2.CascadeClassifier(
+        'haar_cascade_files/haarcascade_frontalface_default.xml')
+        # Run the face detector on the grayscale image
+        face_rects = face_cascade.detectMultiScale(gray, 1.3, 5)
+
+        # Draw a rectangle around the face
+        for (x,y,w,h) in face_rects:
+            cv2.rectangle(img, (x,y), (x+w,y+h), (255,0,0), 3)
+        
         if mirror:
             img = cv2.flip(img, 1)
 
@@ -52,11 +65,11 @@ def show_opencv(typee, mirror=False):
                 font=warningfont)  # 第一个参数为打印的坐标，第二个为打印的文本，第三个为字体颜色，第四个为字体
 
         if typee == 'Identify':
-            hint = "請按「ENTER」進行簽到"
+            hint = "Please Press [ENTER] to Identify"
         elif typee == 'Train':
-            hint = "請按「ENTER」進行三連拍"
+            hint = "Please Press [ENTER] to take triple photos"
         else:
-            hint = "請按「ENTER」繼續"
+            hint = "Please Press [ENTER] to continue"
         w, h = draw.textsize(hint, font=hintfont)
         draw.rectangle(
             ((W / 2 - w / 2 - 5, H - h), (W / 2 + w / 2 + 5, H)), fill="red")
@@ -125,7 +138,7 @@ def cv_ImageText(title, hint, facepath=None, picture=None, identifyfaces=None):
     titlelocation = (W / 2 - w / 2, 5)
 
     if identifyfaces != None and len(identifyfaces) == 1:
-        hint = hint + "或按 'a' 新增身份"
+        hint = hint + "or [a] for new ID"
     w, h = draw.textsize(hint, font=hintfont)
     draw.rectangle(
         ((W / 2 - w / 2 - 5, H - h), (W / 2 + w / 2 + 5, H)), fill="red")
@@ -149,13 +162,13 @@ def cv_Identifyfaces(identifyfaces, picture=None):
     import numpy as np
     # print('identifyfaces=',identifyfaces)
     if len(identifyfaces) == 0:
-        cv_ImageText('沒有偵測到任何人！', '請按「ENTER」繼續')
+        cv_ImageText('No Faces Detected', 'Press [ENTER] to continue ')
         return
     for identifyface in identifyfaces:
         faceimagepath = ClassUtils.getFaceImagepath(identifyface['faceId'])
         if 'person' not in identifyface:
             print('identifyface=', identifyface)
-            cv_ImageText('你哪位？請先訓練。', '按 ENTER 繼續', faceimagepath, picture,
+            cv_ImageText('Who is it?? Please train first!', 'Press [ENTER] to continue ', faceimagepath, picture,
                          identifyfaces)
         else:
             text = ClassUtils.textConfidence(identifyface['person']['name'],
@@ -167,5 +180,5 @@ def cv_Identifyfaces(identifyfaces, picture=None):
             #print('cv_Identifyfaces.identifyface=', identifyface)
             # text = ClassUtils.textConfidence(identifyface['person']['name'],
             #                                  identifyface['confidence'])
-            cv_ImageText(text, '按 ENTER 繼續', faceimagepath, picture,
+            cv_ImageText(text, '[ENTER] to continue ', faceimagepath, picture,
                          identifyfaces)

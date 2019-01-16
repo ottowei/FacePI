@@ -109,13 +109,13 @@ def tryFaceAPIError(faceapijson):
 def textConfidence(name, confidence):
     name = protectPersonName(name)
     if confidence >= 0.9:
-        return name + ' '+ str(confidence) + ' '+ 'IdentiFied!!!'
+        return name + ' ' + 'IdentiFied!!!' + 'Conf: ' + str(confidence) 
     elif confidence >= 0.8:
-        return name + ' '+ str(confidence) + ' '+ 'IdentiFied!!'
+        return name + ' ' + 'IdentiFied!!' + 'Conf: ' + str(confidence) 
     elif confidence >= 0.7:
-        return name + ' '+str(confidence) + ' '+ 'IdentiFied!'
+        return name + ' ' + 'IdentiFied!' + 'Conf: ' + str(confidence) 
     else:
-        return name + ' '+ str(confidence) + ' '+ 'IdentiFied fail'
+        return name + ' ' + 'IdentiFied fail' + 'Conf: ' + str(confidence) 
 
 
 def SigninIdentifyfaces(identifyfaces, picture=None):
@@ -130,7 +130,7 @@ def SigninIdentifyfaces(identifyfaces, picture=None):
                 name = protectPersonName(identifyface['person']['name'])
                 textConfidence(name, identifyface['confidence'])
             else:
-                print('你哪位？', identifyface)
+                print('Who is it??', identifyface)
     elif isWindows() or isDarwin():
         import ClassCV
         ClassCV.cv_Identifyfaces(identifyfaces, picture)
