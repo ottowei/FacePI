@@ -16,7 +16,7 @@ personGroupId = config['personGroupId']
 def takePicture(personGroupId, delay, type='Identify', size='small'):
     sysstr = platform.system()
     print('os=', sysstr, platform.release())
-
+    
     if ClassUtils.isLinux():
         return takePicture_CSI(personGroupId, delay, size)
     else:

@@ -1,3 +1,5 @@
+"""
+Mark following simple calculator, ottowei, 2019011602
 from tkinter import *
 
 def frame(root, side):   
@@ -46,3 +48,4 @@ class Calculator(Frame):
 
 if __name__ == '__main__':
     Calculator().mainloop()
+"""
