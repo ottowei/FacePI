@@ -30,7 +30,7 @@ top.title(title + " for " + personGroupId)
 label = tk.Label(top, text=title, font=font_helv36)
 label.pack()
 b2 = tk.Button(
-    top, text='簽到', font=font_helv36, width=10, height=5, command=identity)
+    top, text='IdentiFied', font=font_helv36, width=10, height=5, command=identity) # Change to Identifed for test - ottowei 20190114 
 b2.pack()
 
 # Code to add widgets will go here...

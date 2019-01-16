@@ -105,23 +105,23 @@ def tryFaceAPIError(faceapijson):
 #         #ClassMessageBox.SuccessesGUI(successes)
 #         ClassCamera.cv_Success(successes)
 
-
+# Modify Window base to show confidence number, ottowei, 2019011603
 def textConfidence(name, confidence):
     name = protectPersonName(name)
     if confidence >= 0.9:
-        return name + '簽到成功!!!'
+        return name + ' '+ str(confidence) + ' '+ 'IdentiFied!!!'
     elif confidence >= 0.8:
-        return name + '簽到成功!!'
+        return name + ' '+ str(confidence) + ' '+ 'IdentiFied!!'
     elif confidence >= 0.7:
-        return name + '簽到成功!'
+        return name + ' '+str(confidence) + ' '+ 'IdentiFied!'
     else:
-        return name + '簽到成功'
+        return name + ' '+ str(confidence) + ' '+ 'IdentiFied fail'
 
 
 def SigninIdentifyfaces(identifyfaces, picture=None):
     if isLinux():
         if len(identifyfaces) == 0:
-            print('照片裡沒有人！')
+            print('No Body！')
             return
 
         for identifyface in identifyfaces:
