@@ -8,6 +8,7 @@ import datetime
 import imutils
 import cv2
 import os
+from FacePI import FacePI # Add to test Signin function
 
 class SigninAPI: # Change to Signin APP, ottowei, 2019012203 
 	def __init__(self, vs, outputPath):
@@ -26,8 +27,8 @@ class SigninAPI: # Change to Signin APP, ottowei, 2019012203
 
 		# create a button, that when pressed, will take the current
 		# frame and save it to file
-		btn = tki.Button(self.root, text="Take a Picture!", # Change the text, ottowei, 2019012201
-			command=self.takeSnapshot)
+		btn = tki.Button(self.root, text="Take a Picture!", #command=FacePI.Signin(self))# Change the text, ottowei, 2019012201
+			 command=self.takeSnapshot) # Change to Signin Command, ottotwei, 2019012204
 		btn.pack(side="bottom", fill="both", expand="yes", padx=10,
 			pady=10)
 
