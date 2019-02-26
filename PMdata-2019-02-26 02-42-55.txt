@@ -1,0 +1,5 @@
+Timestamp: 2019-02-26 10:42:57  Humidity: 57.0  Temperature in C: 24.0    PM 1: 0    PM 2.5: 0    PM 10: 0
+Timestamp: 2019-02-26 10:43:00  Humidity: 57.0  Temperature in C: 25.0    PM 1: 0    PM 2.5: 0    PM 10: 0
+Timestamp: 2019-02-26 10:43:04  Humidity: 57.0  Temperature in C: 25.0    PM 1: 0    PM 2.5: 0    PM 10: 0
+Timestamp: 2019-02-26 10:43:07  Humidity: 57.0  Temperature in C: 25.0    PM 1: 1    PM 2.5: 1    PM 10: 1
+Timestamp: 2019-02-26 10:43:10  Humidity: 57.0  Temperature in C: 25.0    PM 1: 1    PM 2.5: 2    PM 10: 2

@@ -18,15 +18,16 @@ GPIO.cleanup()
 
 
 
-
-file = open("PMdata -" + str(actual_time) + ".txt", "w")
+# Remove the space, ottowei, 2019022601
+file = open("PMdata-" + str(actual_time) + ".txt", "w")
 
 while True:
 
     print('Timestamp: {:%Y-%m-%d %H:%M:%S}'.format(datetime.datetime.now()))
 
-
     humidity, temperature = Adafruit_DHT.read_retry(11 ,18) 
+    # Add Temp print, ottowei, 2019022601
+    print('Temp={0:0.1f}*  Humidity={1:0.1f}%'.format(temperature, humidity))
     
     
     class g3sensor():
@@ -92,10 +93,10 @@ while True:
             if debug: print "pm10: "+str(pm10)
             data = [pm1_cf, pm10_cf, pm25_cf, pm1, pm10, pm25]
 
-            mylcd.lcd_display_string("T={0:0.1f}C H={1:0.1f}%%".format(temperature, humidity), 1) 
-            mylcd.lcd_display_string("PM1: %s" % pm1, 2)
-            mylcd.lcd_display_string("PM2.5: %s " % pm25, 3)
-            mylcd.lcd_display_string("PM10: %s "  % pm10, 4)
+            #mylcd.lcd_display_string("T={0:0.1f}C H={1:0.1f}%%".format(temperature, humidity), 1) 
+            #mylcd.lcd_display_string("PM1: %s" % pm1, 2)
+            #mylcd.lcd_display_string("PM2.5: %s " % pm25, 3)
+            #mylcd.lcd_display_string("PM10: %s "  % pm10, 4)
             
             file.write('Timestamp: {:%Y-%m-%d %H:%M:%S}'.format(datetime.datetime.now()))
             file.write("  Humidity: %s" % humidity)
@@ -107,6 +108,7 @@ while True:
             file.flush()
 
             self.serial.close()
+	    if debug: print data
             return data
 
 
@@ -131,6 +133,5 @@ while True:
                 #print pmdata
                 break
 
-		print('Temp={0:0.1f}*  Humidity={1:0.1f}%'.format(temperature, humidity))
-	time.sleep(10)
+	    time.sleep(30)
 	
